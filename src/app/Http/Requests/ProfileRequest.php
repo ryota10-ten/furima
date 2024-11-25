@@ -33,6 +33,7 @@ class ProfileRequest extends FormRequest
         return [
             'icon.file' => 'アップロードされたファイルが無効です。',
             'icon.mimes' => 'アイコン画像は .jpeg または .png または .jpgの形式である必要があります。',
+            'icon.uploaded' => 'アイコン画像のアップロードに失敗しました。',
         ];
     }
 }

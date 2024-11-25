@@ -24,9 +24,19 @@
         <div class="content__form">
             <form class="form__login" action="/login" method="post">
                 <label class="form__login--label">ユーザー名 / メールアドレス</label>
-                <input class="form__login--item" type="text" name="name" value="" require>
+                <input class="form__login--item" type="text" name="email" value="{{ old('email') }}" >
+                <div class="form__error">
+                    @error('email')
+                    {{ $message }}
+                    @enderror
+                </div>
                 <label class="form__login--label">パスワード</label>
-                <input class="form__login--item" type="password" name="password" value="" require>
+                <input class="form__login--item" type="password" name="password" value="" >
+                <div class="form__error">
+                    @error('password')
+                    {{ $message }}
+                    @enderror
+                </div>
                 <button class="form__login--button" type="submit">ログインする</button>
             </form>
         </div>

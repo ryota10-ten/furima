@@ -48,8 +48,8 @@
                     {{ $message }}
                     @enderror
                 </div>
-                <input type="hidden" name="email" value="{{$profile['email'] }}" >
-                <input type="hidden" name="password" value="{{$profile['password'] }}" >
+                <input type="hidden" name="email" value="{{ $profile['email'] }}" >
+                <input type="hidden" name="password" value="{{ $profile['password'] }}" >
                 <label class="form__update--label">名前</label>
                 <input class="form__update--item" type="text" name="name" value="{{ $profile['name'] }}" >
                 <div class="form__error">

@@ -7,10 +7,13 @@ use App\Models\Profile;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\AddressRequest;
 use App\Http\Requests\ProfileRequest;
+use App\Http\Requests\LoginRequest;
 
 
 class UserController extends Controller
 {
+
+
     public function login()
     {
         return view('login');
@@ -21,19 +24,21 @@ class UserController extends Controller
         return view('register');
     }
 
-    public function add()
-    {
-        return view('profile');
-    }
 
     public function store(RegisterRequest $request)
     {
-        $profile = $request->all();
-
+        $profile = $request->input();
+        $request->session()->put('profile', $profile);
         return view ('profile',compact('profile'));
     }
 
-    public function create(ProfileRequest $profilerequest, AddressRequest $addressrequest)
+    public function edit(Request $request)
+    {
+        $profile = $request->session()->get('profile');
+        return view ('profile',compact('profile'));
+    }
+
+    public function add(ProfileRequest $profileRequest, AddressRequest $addressRequest)
     {
         $icon = null;
         if ($profileRequest->hasFile('icon')) {
@@ -41,12 +46,16 @@ class UserController extends Controller
         }
 
         Profile::updateOrCreate(
-            ['email' => $addressData['email']], 
+            ['email' => $addressRequest['email']],
             [
-                'name'      => $addressData['name'],
+                'name'      => $addressRequest['name'],
                 'icon' => $icon,
-                'address'   => $addressData['address'],
+                'address'   => $addressRequest['address'],
+                'password' =>$addressRequest['password'],
+                'email' => $addressRequest['email'],
+                'post' => $addressRequest['post'],
+                'building' => $addressRequest['building'],
             ]);
-        return view('index');
+        return view ('index');
     }
 }

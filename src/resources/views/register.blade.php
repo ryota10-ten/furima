@@ -29,23 +29,23 @@
                 <label class="form__register--label">メールアドレス</label>
                 <input class="form__register--item" type="email" name="email" value="">
                 <div class="form__error">
-                    @error('email')
-                    {{ $message }}
-                    @enderror
+                        @error('email')
+                        {{ $message }}
+                        @enderror
                 </div>
                 <label class="form__register--label">パスワード</label>
                 <input class="form__register--item" type="password" name="password" value="">
                 <div class="form__error">
-                @error('password')
-                {{ $message }}
-                @enderror
+                    @error('password')
+                    {{ $message }}
+                    @enderror
                 </div>
                 <label class="form__register--label">確認用パスワード</label>
                 <input class="form__register--item" type="password" name="password_confirmation" value="" >
                 <div class="form__error">
-                @error('password')
-                {{ $message }}
-                @enderror
+                    @error('password')
+                    {{ $message }}
+                    @enderror
                 </div>
 
                 <button class="form__register--button" type="submit">登録する</button>
