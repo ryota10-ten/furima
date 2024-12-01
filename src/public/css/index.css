@@ -48,3 +48,45 @@
     text-decoration: none;
     font-size: 20px;
 }
+
+.content {
+    width: 100%;
+}
+
+.content__list {
+    margin-top: 5%;
+    border-bottom: 2px solid #5F5F5F;
+    padding-left: 15%;
+}
+
+.content__list--recommend {
+    font-size: 24px;
+    padding-right: 5%;
+}
+
+.content__list--mylist {
+    font-size: 24px;
+}
+
+.product__list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product__item {
+    margin: 5%;
+}
+
+.product__img {
+    background-color: #D9D9D9;
+    height: 200px;
+    width: 200px;
+    text-align: center;
+    font-size: 24px;
+    padding-top: 40%;
+    font-size: 30px;
+}
+
+.product__name {
+    font-size: 25px;
+}

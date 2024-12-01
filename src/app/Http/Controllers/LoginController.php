@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
-    use \Illuminate\Foundation\Auth\AuthenticatesUsers;
+    use AuthenticatesUsers;
 
     public function login()
     {
@@ -16,7 +17,7 @@ class LoginController extends Controller
 
     protected function redirectTo()
     {
-        return '/'; 
+        return view('index');
     }
 
     protected function credentials(LoginRequest $request)
@@ -24,7 +25,21 @@ class LoginController extends Controller
         return [
             'email' => $request->get('email'),
             'password' => $request->get('password'),
-            'is_active' => 1, // 例: アクティブなユーザーのみログイン可能
+            'is_active' => 1,
         ];
+    }
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('index');
+    }
+
+    public function index()
+    {
+        return view('index');
     }
 }

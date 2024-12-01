@@ -10,5 +10,4 @@ class ItemController extends Controller
     {
         return view('index');
     }
-
 }
