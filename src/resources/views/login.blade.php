@@ -23,8 +23,9 @@
         </h1>
         <div class="content__form">
             <form class="form__login" action="/login" method="post">
+                @csrf
                 <label class="form__login--label">ユーザー名 / メールアドレス</label>
-                <input class="form__login--item" type="text" name="email" value="{{ old('email') }}" >
+                <input class="form__login--item" type="email" name="email" value="{{ old('email') }}" >
                 <div class="form__error">
                     @error('email')
                     {{ $message }}

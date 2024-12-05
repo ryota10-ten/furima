@@ -7,7 +7,7 @@ use App\Models\Profile;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\AddressRequest;
 use App\Http\Requests\ProfileRequest;
-
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -42,19 +42,18 @@ class UserController extends Controller
             $icon = $profileRequest->file('icon')->store('icons', 'public');
         }
 
-        Profile::updateOrCreate
-        (
-            ['email' => $addressRequest['email']],
+        Profile::updateOrCreate(
+            ['email' => $addressRequest->input('email')],
             [
-                'name'      => $addressRequest['name'],
-                'icon' => $icon,
-                'address'   => $addressRequest['address'],
-                'password' =>$addressRequest['password'],
-                'email' => $addressRequest['email'],
-                'post' => $addressRequest['post'],
-                'building' => $addressRequest['building'],
+                'name'      => $addressRequest->input('name'),
+                'icon'      => $icon,
+                'address'   => $addressRequest->input('address'),
+                'password'  => Hash::make($addressRequest->input('password')),
+                'email'     => $addressRequest->input('email'),
+                'post'      => $addressRequest->input('post'),
+                'building'  => $addressRequest->input('building'),
             ]
         );
-        return view ('index');
+        return view('index');
     }
 }

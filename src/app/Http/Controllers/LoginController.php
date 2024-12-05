@@ -4,29 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+
 
 class LoginController extends Controller
 {
-    use AuthenticatesUsers;
 
-    public function login()
+    public function index()
     {
         return view('login');
     }
 
-    protected function redirectTo()
+    public function login(LoginRequest $request)
     {
-        return view('index');
+        $user_info = $request ->only('email', 'password');
+
+        if(Auth::attempt($user_info)){
+            $request->session()->regenerate();
+            return redirect('/');
+        }
+
+        return back()->withErrors([
+        'email' => '認証に失敗しました。',
+        'password' => '認証に失敗しました。',
+        ]);
     }
 
-    protected function credentials(LoginRequest $request)
+    protected function guard()
     {
-        return [
-            'email' => $request->get('email'),
-            'password' => $request->get('password'),
-            'is_active' => 1,
-        ];
+        return Auth::guard();
     }
 
     public function logout(Request $request)
@@ -38,8 +44,4 @@ class LoginController extends Controller
         return redirect('index');
     }
 
-    public function index()
-    {
-        return view('index');
-    }
 }

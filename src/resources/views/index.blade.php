@@ -21,14 +21,14 @@
                 <input class="header__search--item" type="text" placeholder="なにをお探しですか？">
             </div>
             <div class="header__buttons">
-                @if(Auth::check())
+                @if (Auth::check())
                 <form method="POST" action="/logout">
                 @csrf
                     <button class="header__button--logout" type="submit">ログアウト</button>
                 </form>
+                @endif
                 <a class="header__button--mypage" href="/mypage">マイページ</a>
                 <a class="header__button--sell" href="/sell">出品</a>
-                @endif
             </div>
         </div>
     </header>

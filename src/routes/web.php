@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LoginController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,9 +28,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [loginController::class, 'index']);
 });
 
-Route::get('/', [ItemController::class,'index']);
 
-Route::get('/login',[LoginController::class,'login']);
+Route::get('/login',[LoginController::class,'index']);
+Route::post('/login',[LoginController::class,'login']);
 
-Route::post('/login',[LoginController::class,'logout']);
+Route::post('/logout',[LoginController::class,'logout']);
 
+
+Route::middleware('auth')->group(function () {
+    Route::get('/', [ItemController::class, 'index']);
+});
