@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CouchTech</title>
+    <title>CoachTech</title>
     <link rel="stylesheet" href="{{asset('css/sanitize.css')}}">
     <link rel="stylesheet" href="{{asset('css/index.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,22 +15,54 @@
     <header class="header">
         <div class="header__inner">
             <div class="header__logo">
-                <img class="header__logo--img" src="{{asset('img/logo.svg')}}" alt="CouchTech">
+                <img class="header__logo--img" src="{{asset('img/logo.svg')}}" alt="CoachTech">
             </div>
             <div class="header__search">
                 <input class="header__search--item" type="text" placeholder="なにをお探しですか？">
             </div>
             <div class="header__buttons">
-                <form method="POST" action="">
+                @if (Auth::check())
+                <form method="POST" action="/logout">
                 @csrf
                     <button class="header__button--logout" type="submit">ログアウト</button>
                 </form>
+                @endif
                 <a class="header__button--mypage" href="/mypage">マイページ</a>
                 <a class="header__button--sell" href="/sell">出品</a>
             </div>
-
         </div>
-    </div>
-    
+    </header>
+    <main class="content">
+        <div class="content__list">
+            <span class="content__list--recommend">おすすめ</span>
+            <span class="content__list--mylist">マイリスト</span>
+        </div>
+        <div class="product__list">
+            <div class="product__item">
+                <div class="product__img">
+                    商品画像
+                </div>
+                <div class="product__name">
+                    商品名
+                </div>
+            </div>
+            <div class="product__item">
+                <div class="product__img">
+                    商品画像
+                </div>
+                <div class="product__name">
+                    商品名
+                </div>
+            </div>
+            <div class="product__item">
+                <div class="product__img">
+                    商品画像
+                </div>
+                <div class="product__name">
+                    商品名
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

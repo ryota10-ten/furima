@@ -2,14 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Profile extends Model
+
+class Profile extends Authenticatable
 {
-    use HasFactory;
-
-    protected $table = 'profiles';
     protected $fillable = ['name','email','password','post','address','building'];
 
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected $table = 'profiles';
 }

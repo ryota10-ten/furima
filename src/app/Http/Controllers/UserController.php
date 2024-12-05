@@ -7,12 +7,10 @@ use App\Models\Profile;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\AddressRequest;
 use App\Http\Requests\ProfileRequest;
-use App\Http\Requests\LoginRequest;
-
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-
 
     public function login()
     {
@@ -23,7 +21,6 @@ class UserController extends Controller
     {
         return view('register');
     }
-
 
     public function store(RegisterRequest $request)
     {
@@ -46,16 +43,17 @@ class UserController extends Controller
         }
 
         Profile::updateOrCreate(
-            ['email' => $addressRequest['email']],
+            ['email' => $addressRequest->input('email')],
             [
-                'name'      => $addressRequest['name'],
-                'icon' => $icon,
-                'address'   => $addressRequest['address'],
-                'password' =>$addressRequest['password'],
-                'email' => $addressRequest['email'],
-                'post' => $addressRequest['post'],
-                'building' => $addressRequest['building'],
-            ]);
-        return view ('index');
+                'name'      => $addressRequest->input('name'),
+                'icon'      => $icon,
+                'address'   => $addressRequest->input('address'),
+                'password'  => Hash::make($addressRequest->input('password')),
+                'email'     => $addressRequest->input('email'),
+                'post'      => $addressRequest->input('post'),
+                'building'  => $addressRequest->input('building'),
+            ]
+        );
+        return view('index');
     }
 }

@@ -35,7 +35,6 @@
     font-size:20px;
 }
 
-
 .header__button--mypage {
     color: #FFF;
     text-decoration: none;
@@ -63,9 +62,11 @@
     margin: 0 auto;
     width: 50%;
 }
+
 .form__icon {
     display: flex;
 }
+
 .form__update--preview img {
     max-width: 100%;
     max-height: 100%;

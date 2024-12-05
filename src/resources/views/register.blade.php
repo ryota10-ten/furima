@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CouchTech</title>
+    <title>CoachTech</title>
     <link rel="stylesheet" href="{{asset('css/sanitize.css')}}">
     <link rel="stylesheet" href="{{asset('css/register.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,9 +14,9 @@
 <body>
     <header class="header">
         <div class="header__inner">
-            <img class="header__logo" src="{{asset('img/logo.svg')}}" alt="CouchTech">
+            <img class="header__logo" src="{{asset('img/logo.svg')}}" alt="CoachTech">
         </div>
-    </div>
+    </header>
     <main class="content">
         <h1 class="content__title">
             会員登録
@@ -47,14 +47,12 @@
                     {{ $message }}
                     @enderror
                 </div>
-
                 <button class="form__register--button" type="submit">登録する</button>
             </form>
         </div>
         <div class="content__login">
             <a class="content__login--item" href="/login">ログインはこちら</a>
         </div>
-
     </main>
 </body>
 </html>

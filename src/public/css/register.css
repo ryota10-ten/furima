@@ -28,6 +28,7 @@
     margin: 0 auto;
     width: 50%;
 }
+
 .form__register {
     padding: 5px;
 }
@@ -60,7 +61,6 @@
 
 .content__login {
     text-align: center;
-    
 }
 
 .content__login--item {

@@ -23,6 +23,7 @@ class CreateProfilesTable extends Migration
             $table->string('building')->nullable();
             $table->string('icon')->nullable();
             $table->timestamps();
+            $table->rememberToken();
         });
     }
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CouchTech</title>
+    <title>CoachTech</title>
     <link rel="stylesheet" href="{{asset('css/sanitize.css')}}">
     <link rel="stylesheet" href="{{asset('css/login.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,17 +14,18 @@
 <body>
     <header class="header">
         <div class="header__inner">
-            <img class="header__logo" src="{{asset('img/logo.svg')}}" alt="CouchTech">
+            <img class="header__logo" src="{{asset('img/logo.svg')}}" alt="CoachTech">
         </div>
-    </div>
+    </header>
     <main class="content">
         <h1 class="content__title">
             ログイン
         </h1>
         <div class="content__form">
             <form class="form__login" action="/login" method="post">
+                @csrf
                 <label class="form__login--label">ユーザー名 / メールアドレス</label>
-                <input class="form__login--item" type="text" name="email" value="{{ old('email') }}" >
+                <input class="form__login--item" type="email" name="email" value="{{ old('email') }}" >
                 <div class="form__error">
                     @error('email')
                     {{ $message }}
@@ -43,7 +44,6 @@
         <div class="content__register">
             <a class="content__register--item" href="/register">会員登録はこちら</a>
         </div>
-
     </main>
 </body>
 </html>

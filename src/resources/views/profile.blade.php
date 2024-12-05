@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CouchTech</title>
+    <title>CoachTech</title>
     <link rel="stylesheet" href="{{asset('css/sanitize.css')}}">
     <link rel="stylesheet" href="{{asset('css/profile.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +15,7 @@
     <header class="header">
         <div class="header__inner">
             <div class="header__logo">
-                <img class="header__logo--img" src="{{asset('img/logo.svg')}}" alt="CouchTech">
+                <img class="header__logo--img" src="{{asset('img/logo.svg')}}" alt="CoachTech">
             </div>
             <div class="header__search">
                 <input class="header__search--item" type="text" placeholder="なにをお探しですか？">
@@ -28,9 +28,8 @@
                 <a class="header__button--mypage" href="/mypage">マイページ</a>
                 <a class="header__button--sell" href="/sell">出品</a>
             </div>
-
         </div>
-    </div>
+    </header>
     <main class="content">
         <h1 class="content__title">プロフィールの設定</h1>
         <div class="content__form">
