@@ -26,6 +26,8 @@
                 @csrf
                     <button class="header__button--logout" type="submit">ログアウト</button>
                 </form>
+                @else
+                <a class="header__button--login" href="/login">ログイン</a>
                 @endif
                 <a class="header__button--mypage" href="/mypage">マイページ</a>
                 <a class="header__button--sell" href="/sell">出品</a>
