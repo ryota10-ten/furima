@@ -24,17 +24,12 @@ Route::post('/mypage/profile/', [UserController::class, 'store']);
 Route::get('/mypage/profile/', [UserController::class, 'edit']);
 Route::post('/',[UserController::class,'add']);
 
-Route::middleware('auth')->group(function () {
-    Route::get('/', [loginController::class, 'index']);
-});
-
-
 Route::get('/login',[LoginController::class,'index']);
 Route::post('/login',[LoginController::class,'login']);
-
 Route::post('/logout',[LoginController::class,'logout']);
 
 
-Route::middleware('auth')->group(function () {
-    Route::get('/', [ItemController::class, 'index']);
+Route::middleware('auth')->group(function()
+{
+    Route::get('/', [ItemController::class,'index']);
 });
