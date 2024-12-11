@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductController;
 
 
 /*
@@ -28,8 +29,6 @@ Route::get('/login',[LoginController::class,'index']);
 Route::post('/login',[LoginController::class,'login']);
 Route::post('/logout',[LoginController::class,'logout']);
 
+Route::get('/', [ItemController::class,'index']);
 
-Route::middleware('auth')->group(function()
-{
-    Route::get('/', [ItemController::class,'index']);
-});
+Route::get('/item', [ProductController::class,'item']);

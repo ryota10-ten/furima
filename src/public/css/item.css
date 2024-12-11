@@ -1,0 +1,189 @@
+.header {
+    width: 100%;
+}
+
+.header__inner {
+    background-color: black;
+    padding: 20px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__logo {
+    padding: 5px 5px;
+}
+
+.header__search {
+    width: 30%;
+}
+
+.header__search--item {
+    padding: 5px 10px;
+    width: 100%;
+}
+
+.header__buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.header__button--logout {
+    background-color: black;
+    color: #FFF;
+    border: none;
+    font-size: 20px;
+}
+
+.header__button--login {
+    color: #FFF;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.header__button--mypage {
+    color: #FFF;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.header__button--sell {
+    background-color: #FFF;
+    color: black;
+    padding: 0px 10px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.content {
+    width: 100%;
+}
+
+.content-item{
+    display:flex;
+    justify-content: center;
+    margin: 5% 5% auto;
+}
+
+.item__detail--img {
+    background-color: #D9D9D9;
+    width: 300px;
+    height: 300px;
+    text-align: center;
+    font-size: 30px;
+    margin: 5%;
+    padding-top: 20%;
+    align-items: center;
+}
+
+.item__detail{
+    width: 100%;
+    padding: 5px;
+}
+
+.item__detail--name{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.item__detail--brand{
+    font-size: 10px;
+    margin-top: -5%;
+}
+
+.item__detail--price{
+    font-size: 20px;
+}
+
+.button__purchase{
+    text-align: center;
+    background-color: #FF5555;
+    color: #FFF;
+    border: none;
+    width: 100%;
+    padding: 5px 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.info__detail{
+    display: flex;
+    align-items: center;
+
+}
+
+.detail__header{
+    text-align: left;
+    width: 30%;
+}
+
+.detail__header--title{
+    font-weight: bold;
+}
+
+.detail__info{
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.detail__info--category{
+    background-color: #D9D9D9;
+    border-radius: 15px;
+    text-align: center;
+    margin: 5px 10px;
+    padding: 0 10px;
+}
+
+.detail__info--condition{
+    margin: 0 10px;
+    text-align: center;
+    padding: 0 10px;
+}
+
+.profile__data{
+    display: flex;
+    align-items: center;
+}
+
+.profile__data--icon{
+    background-color: 
+    #D9D9D9;
+    border-radius:50%;
+    width: 50px;
+    height: 50px;
+}
+
+.profile__data--name{
+    padding: 0 10px;
+}
+
+.profile__comment{
+    background-color: #D9D9D9;
+    text-align: left;
+    margin: 10px 0;
+    padding: 5px ;
+}
+
+.form__comment--title{
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.input__comment{
+    width: 100%;
+    height: 30%;
+
+}
+
+.button__comment {
+    text-align: center;
+    background-color: #FF5555;
+    color: #FFF;
+    border: none;
+    width: 100%;
+    padding: 5px 0;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+}
