@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ItemController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
+use App\Http\Middleware\EnsureUserIsLoggedIn;
 
 
 /*
@@ -29,6 +30,8 @@ Route::get('/login',[LoginController::class,'index']);
 Route::post('/login',[LoginController::class,'login']);
 Route::post('/logout',[LoginController::class,'logout']);
 
-Route::get('/', [ItemController::class,'index']);
+Route::get('/', [IndexController::class,'index']);
 
 Route::get('/item', [ProductController::class,'item']);
+Route::get('/item/{id}', [ProductController::class, 'show']);
+Route::post('/comments', [ProductController::class, 'store'])->middleware('ensureLoggedIn');

@@ -40,30 +40,18 @@
             <span class="content__list--mylist">マイリスト</span>
         </div>
         <div class="product__list">
+            @foreach ($products as $product)
             <div class="product__item">
-                <div class="product__img">
-                    商品画像
-                </div>
-                <div class="product__name">
-                    商品名
-                </div>
+                <a href="/item/{{ $product['id'] }}">
+                    <div class="product__img">
+                        <img class="img" src="{{ $product['img'] }}" alt="{{ $product['name'] }}">
+                    </div>
+                    <div class="product__name">
+                        {{ $product['name'] }}
+                    </div>
+                </a>
             </div>
-            <div class="product__item">
-                <div class="product__img">
-                    商品画像
-                </div>
-                <div class="product__name">
-                    商品名
-                </div>
-            </div>
-            <div class="product__item">
-                <div class="product__img">
-                    商品画像
-                </div>
-                <div class="product__name">
-                    商品名
-                </div>
-            </div>
+            @endforeach
         </div>
     </main>
 </body>

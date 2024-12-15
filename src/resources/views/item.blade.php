@@ -38,26 +38,28 @@
         <div class="content-item">
             <div class="item__detail">
                 <div class="item__detail--img">
-                商品画像
+                    <img class="img" src="{{ $product['img']}}" alt="{{ $product['name'] }}">
                 </div>
             </div>
             <div class="item__detail">
                 <form class="item__purchase">
                     <input type="hidden" name="">
-                    <p class="item__detail--name">商品名がここに入る</p>
-                    <p class="item__detail--brand">ブランド名</p>
-                    <p class="item__detail--price">¥4,700円</p>
+                    <p class="item__detail--name">{{ $product['name'] }}</p>
+                    <p class="item__detail--brand"></p>
+                    <p class="item__detail--price">¥{{ number_format($product['price']) }}円</p>
                     <button class="button__purchase" type="submit">購入手続きへ</button>
                 </form>
                 <h2 class="item__detail--explain">商品説明</h2>
+                    <p class="item__detail--explain">{{ $product['detail'] }}
                 <h2 class="item__info">商品の情報</h2>
                 <div class="info__detail">
                     <div class="detail__header">
                         <span class="detail__header--title">カテゴリー</span>
                     </div>
                     <div class="detail__info">
-                        <div class="detail__info--category">洋服</div>
-                        <div class="detail__info--category">メンズ</div>
+                        @foreach($product->categories as $category)
+                        <div class="detail__info--category">{{ $category['category']}}</div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="info__detail">
@@ -65,24 +67,31 @@
                         <span class="detail__header--title">商品の状態</span>
                     </div>
                     <div class="detail__info">
-                        <div class="detail__info--condition">良好</div>
+                        <div class="detail__info--condition">{{  $product['condition']['condition'] }}</div>
                     </div>
                 </div>
-                <h2 class="item__comment">コメント（1）</h2>
-                <div class="profile__data">
-                    <div class="profile__data--icon"></div>
-                    <div class="profile__data--name">admin</div>
-                </div>
-                <div class="profile__comment">
-                    こちらにコメントが入ります。
-                </div>
+                <h2 class="item__comment">コメント（{{ $question['comments_count'] }}）</h2>
+                @foreach ($question->comments as $comment)
+                    <div class="profile__data">
+                        <div class="profile__data--icon"></div>
+                        <div class="profile__data--name">{{ $comment['profile']['name'] }}</div>
+                    </div>
+                    <div class="profile__comment">
+                        {{ $comment['comment'] }}
+                    </div>
+                @endforeach
                 <div class="form__comment--title">
                     商品へのコメント
                 </div>
-                <form class="form__comment">
-                    <input type="hidden" name="id">
-                    <textarea class="input__comment" type="text" name="comment">
-                    </textarea>
+                <form class="form__comment" action="/comments" method="POST">
+                @csrf
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    <textarea class="input__comment" name="comment" placeholder="コメントを入力"></textarea>
+                    <div class="form__error">
+                    @error('comment')
+                    {{ $message }}
+                    @enderror
+                </div>
                     <button class="button__comment" type="submit">
                         コメントを送信する
                     </button>
