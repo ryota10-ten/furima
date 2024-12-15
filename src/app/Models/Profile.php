@@ -16,4 +16,9 @@ class Profile extends Authenticatable
     ];
 
     protected $table = 'profiles';
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
