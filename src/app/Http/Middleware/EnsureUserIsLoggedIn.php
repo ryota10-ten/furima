@@ -17,7 +17,7 @@ class EnsureUserIsLoggedIn
     public function handle(Request $request, Closure $next)
     {
         if (!auth()->check()) {
-            return redirect()->route('login')->with('error', 'ログインが必要です。');
+            return back()->with('error', 'ログインが必要です。');
         }
         
         return $next($request);
