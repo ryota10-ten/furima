@@ -6,6 +6,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Middleware\EnsureUserIsLoggedIn;
+use App\Http\Controllers\ProfileController;
 
 
 /*
@@ -35,3 +36,5 @@ Route::get('/', [IndexController::class,'index']);
 Route::get('/item', [ProductController::class,'item']);
 Route::get('/item/{id}', [ProductController::class, 'show']);
 Route::post('/comments', [ProductController::class, 'store'])->middleware('ensureLoggedIn');
+
+Route::get('/mypage',[ProfileController::class,'mypage']);

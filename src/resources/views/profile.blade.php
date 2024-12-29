@@ -37,6 +37,11 @@
             @csrf
                 <div class="form__icon">
                     <div class="form__update--preview" id="icon-preview">
+                        @if (!empty($profile['icon']))
+                        <img src="{{ asset('storage/' . $profile['icon']) }}" alt="現在のアイコン">
+                        @else
+                        <img src="{{ asset('img/default-icon.png') }}" style="width: 100px; height: 100px; border-radius: 50%;">
+                        @endif
                     </div>
                     <label class="form__update--icon" for="icon">画像を選択する
                     </label>
@@ -57,21 +62,21 @@
                     @enderror
                 </div>
                 <label class="form__update--label">郵便番号</label>
-                <input class="form__update--item" type="text" name="post" value="{{ old('post') }}">
+                <input class="form__update--item" type="text" name="post" value="{{  old('post', optional($profile)->post) }}">
                 <div class="form__error">
                     @error('post')
                     {{ $message }}
                     @enderror
                 </div>
                 <label class="form__update--label">住所</label>
-                <input class="form__update--item" type="text" name="address" value="{{ old('address') }}">
+                <input class="form__update--item" type="text" name="address" value="{{  old('address', optional($profile)->address)}}">
                 <div class="form__error">
                     @error('address')
                     {{ $message }}
                     @enderror
                 </div>
                 <label class="form__update--label">建物名</label>
-                <input class="form__update--item" type="text" name="building" value="{{ old('building') }}">
+                <input class="form__update--item" type="text" name="building" value="{{  old('building', optional($profile)->building)}}">
                 <div class="form__error">
                     @error('building')
                     {{ $message }}
@@ -87,13 +92,10 @@
             // ファイル選択イベント
             fileInput.addEventListener('change', (event) => {
                 const file = event.target.files[0];
-
-                
                 imagePreview.innerHTML = '';
                 imagePreview.style.backgroundColor = '#D9D9D9';
 
                 if (file) {
-                    // 選択されたファイルを読み込んでプレビューに表示
                     const reader = new FileReader();
                     reader.onload = (e) => {
                         const img = document.createElement('img');

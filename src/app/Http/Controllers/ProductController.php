@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Comment;
-use App\Http\Request\CommentRequest;
+use App\Http\Requests\CommentRequest;
 
 class ProductController extends Controller
 {
@@ -30,7 +30,7 @@ class ProductController extends Controller
     {
         if (!auth()->check())
         {
-            return redirect()->route('login')->with('error', 'コメントを投稿するにはログインが必要です。');
+            return back()->with('error', 'コメントを投稿するにはログインが必要です。');
         }
         
         Comment::create([

@@ -35,23 +35,32 @@
         </div>
     </header>
     <main class="content">
-        <div class="content__list">
-            <span class="content__list--recommend">おすすめ</span>
-            <span class="content__list--mylist">マイリスト</span>
-        </div>
-        <div class="product__list">
-            @foreach ($products as $product)
-            <div class="product__item">
-                <a href="/item/{{ $product['id'] }}">
-                    <div class="product__img">
-                        <img class="img" src="{{ $product['img'] }}" alt="{{ $product['name'] }}">
-                    </div>
-                    <div class="product__name">
-                        {{ $product['name'] }}
-                    </div>
-                </a>
+        <div class="tab_wrap">
+            <input id="tab1" type="radio" name="tab_btn" checked>
+            <input id="tab2" type="radio" name="tab_btn">
+            <div class="tab_area">
+                <label class="tab1_label" for="tab1">おすすめ</label>
+                <label class="tab2_label" for="tab2">マイリスト</label>
             </div>
-            @endforeach
+            <div class="panel_area">
+                <div id="panel1" class="product__list">
+                    @foreach ($products as $product)
+                    <div class="product__item">
+                        <a class="product__link" href="/item/{{ $product['id'] }}">
+                            <div class="product__img">
+                                <img class="img" src="{{ $product['img'] }}" alt="{{ $product['name'] }}">
+                            </div>
+                            <div class="product__name">
+                            {{ $product['name'] }}
+                            </div>
+                        </a>
+                    </div>
+                    @endforeach
+                </div>
+                <div id="panel2" class="product__list">
+                    マイリスト
+                </div>
+            </div>
         </div>
     </main>
 </body>

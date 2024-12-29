@@ -73,7 +73,7 @@
                 <h2 class="item__comment">コメント（{{ $question['comments_count'] }}）</h2>
                 @foreach ($question->comments as $comment)
                     <div class="profile__data">
-                        <div class="profile__data--icon"></div>
+                        
                         <div class="profile__data--name">{{ $comment['profile']['name'] }}</div>
                     </div>
                     <div class="profile__comment">

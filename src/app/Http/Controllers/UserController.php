@@ -8,6 +8,8 @@ use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\AddressRequest;
 use App\Http\Requests\ProfileRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
 
 class UserController extends Controller
 {
@@ -31,7 +33,11 @@ class UserController extends Controller
 
     public function edit(Request $request)
     {
-        $profile = $request->session()->get('profile');
+        $user = Auth::user();
+        $profile = Profile::where('email', $user->email)->first();
+        if (!$profile){
+            $profile = $request->session()->get('profile');
+        }
         return view ('profile',compact('profile'));
     }
 
@@ -54,6 +60,16 @@ class UserController extends Controller
                 'building'  => $addressRequest->input('building'),
             ]
         );
-        return view('index');
+
+        $email = $addressRequest->input('email');
+        $user = Profile::where('email', $email)->first();
+
+        if ($user->first_login) {
+            $user->update(['first_login' => false]);
+        }
+
+        $products =  Product::all();
+
+        return view('index',compact('products'));
     }
 }

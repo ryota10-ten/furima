@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
 
 
 class LoginController extends Controller
@@ -18,8 +19,8 @@ class LoginController extends Controller
     public function login(LoginRequest $request)
     {
         $user_info = $request ->only('email', 'password');
-
         if(Auth::attempt($user_info)){
+            dd($user_info);
             $request->session()->regenerate();
             return redirect('/');
         }
@@ -37,11 +38,11 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        $this->guard()->logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        Auth::logout();
 
-        return view('index');
+        $products = Product::all();
+
+        return view('index',compact('products'));
     }
 
 }
