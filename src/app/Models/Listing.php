@@ -9,7 +9,7 @@ class Listing extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['profile_id','product_id',];
+    protected $fillable = ['user_id','product_id',];
 
     protected $table = 'listings';
 
@@ -18,8 +18,8 @@ class Listing extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function profile()
+    public function user()
     {
-        return $this->belongsTo(Profile::class);
+        return $this->belongsTo(User::class);
     }
 }

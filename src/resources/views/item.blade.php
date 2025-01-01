@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,8 +73,16 @@
                 <h2 class="item__comment">コメント（{{ $question['comments_count'] }}）</h2>
                 @foreach ($question->comments as $comment)
                     <div class="profile__data">
-                        
-                        <div class="profile__data--name">{{ $comment['profile']['name'] }}</div>
+                        <div class="profile__data--icon">
+                            @if (!empty($comment['user']['icon']))
+                            <img src="{{ asset('storage/' . $comment['user']['icon']) }}" alt="ユーザーアイコン" >
+                            @else
+                            <img src="{{ asset('img/default-icon.png') }}" >
+                            @endif
+                        </div>
+                        <div class="profile__data--name">
+                            {{ $comment['user']['name'] }}
+                        </div>
                     </div>
                     <div class="profile__comment">
                         {{ $comment['comment'] }}

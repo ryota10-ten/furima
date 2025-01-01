@@ -13,7 +13,7 @@ class AddFirstLoginToProfilesTable extends Migration
      */
     public function up()
     {
-        Schema::table('profiles', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->boolean('first_login')->default(true);
         });
     }
@@ -25,7 +25,7 @@ class AddFirstLoginToProfilesTable extends Migration
      */
     public function down()
     {
-        Schema::table('profiles', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('first_login');
         });
     }

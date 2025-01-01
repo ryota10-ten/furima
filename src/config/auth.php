@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'profiles',
+        'passwords' => 'users',
     ],
 
     /*
@@ -38,10 +38,10 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'profiles',
+            'provider' => 'users',
         ],
     ],
-
+    
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -60,9 +60,9 @@ return [
     */
 
     'providers' => [
-        'profiles' => [
+        'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Profile::class,
+            'model' => App\Models\User::class,
         ],
 
         // 'users' => [
@@ -87,8 +87,8 @@ return [
     */
 
     'passwords' => [
-        'profiles' => [
-            'provider' => 'profiles',
+        'users' => [
+            'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
