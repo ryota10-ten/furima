@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Profile;
+use App\Models\User;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\AddressRequest;
 use App\Http\Requests\ProfileRequest;
@@ -34,7 +34,7 @@ class UserController extends Controller
     public function edit(Request $request)
     {
         $user = Auth::user();
-        $profile = Profile::where('email', $user->email)->first();
+        $profile = User::where('email', $user->email)->first();
         if (!$profile){
             $profile = $request->session()->get('profile');
         }
@@ -48,9 +48,18 @@ class UserController extends Controller
             $icon = $profileRequest->file('icon')->store('icons', 'public');
         }
 
-        Profile::updateOrCreate(
-            ['email' => $addressRequest->input('email')],
-            [
+        if (Auth::check()) {
+            $user = Auth::user();
+            $user->update([
+                'name'      => $addressRequest->input('name'),
+                'icon'      => $icon,
+                'address'   => $addressRequest->input('address'),
+                'email'     => $addressRequest->input('email'),
+                'post'      => $addressRequest->input('post'),
+                'building'  => $addressRequest->input('building'),
+            ]);
+        }else {
+            User::create([
                 'name'      => $addressRequest->input('name'),
                 'icon'      => $icon,
                 'address'   => $addressRequest->input('address'),
@@ -58,11 +67,11 @@ class UserController extends Controller
                 'email'     => $addressRequest->input('email'),
                 'post'      => $addressRequest->input('post'),
                 'building'  => $addressRequest->input('building'),
-            ]
-        );
+            ]);
+        }
 
         $email = $addressRequest->input('email');
-        $user = Profile::where('email', $email)->first();
+        $user = User::where('email', $email)->first();
 
         if ($user->first_login) {
             $user->update(['first_login' => false]);

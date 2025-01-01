@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\LoginRequest;
 use App\Models\Product;
 
 
@@ -18,22 +18,18 @@ class LoginController extends Controller
 
     public function login(LoginRequest $request)
     {
-        $user_info = $request ->only('email', 'password');
-        if(Auth::attempt($user_info)){
-            dd($user_info);
+        if(Auth::attempt($request->only('email','password'))){
+            \Log::info('ログイン成功');
             $request->session()->regenerate();
-            return redirect('/');
+            return redirect()->intended('/');
+        } else {
+            \Log::info('ログイン失敗', $request->only('email', 'password'));
         }
 
         return back()->withErrors([
         'email' => '認証に失敗しました。',
         'password' => '認証に失敗しました。',
         ]);
-    }
-
-    protected function guard()
-    {
-        return Auth::guard();
     }
 
     public function logout(Request $request)

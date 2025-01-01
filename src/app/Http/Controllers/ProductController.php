@@ -21,7 +21,7 @@ class ProductController extends Controller
         $categoryIds = Category::all();
 
         $product->categories()->syncWithoutDetaching($categoryIds);
-        $question = product::with('comments.profile')->withCount('comments')->findOrFail($id);
+        $question = product::with('comments.user')->withCount('comments')->findOrFail($id);
 
         return view('item', compact('product','categoryIds','question'));
     }
@@ -32,11 +32,10 @@ class ProductController extends Controller
         {
             return back()->with('error', 'コメントを投稿するにはログインが必要です。');
         }
-        
         Comment::create([
             'product_id' => $request->product_id,
             'comment' => $request->comment,
-            'profile_id' => auth()->id(),
+            'user_id' => auth()->id(),
         ]);
 
         return back();
