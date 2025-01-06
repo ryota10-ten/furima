@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Middleware\EnsureUserIsLoggedIn;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SellController;
 
 
 /*
@@ -38,3 +39,6 @@ Route::get('/item/{id}', [ProductController::class, 'show']);
 Route::post('/comments', [ProductController::class, 'store'])->middleware('ensureLoggedIn');
 
 Route::get('/mypage',[ProfileController::class,'mypage']);
+
+Route::get('/sell',[SellController::class,'sell']);
+Route::post('/sell',[SellController::class,'store']);

@@ -1,0 +1,160 @@
+.header {
+    width: 100%;
+}
+
+.header__inner {
+    background-color: black;
+    padding: 20px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__logo {
+    padding: 5px 5px;
+}
+
+.header__search {
+    width: 30%;
+}
+
+.header__search--item {
+    padding: 5px 10px;
+    width: 100%;
+}
+
+.header__buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.header__button--logout {
+    background-color: black;
+    color: #FFF;
+    border: none;
+    font-size: 20px;
+}
+
+.header__button--login {
+    color: #FFF;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.header__button--mypage {
+    color: #FFF;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.header__button--sell {
+    background-color: #FFF;
+    color: black;
+    padding: 0px 10px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.content {
+    width: 100%;
+}
+
+.content__title {
+    text-align: center;
+}
+
+.form {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.form__item--title{
+    margin-bottom: 0;
+}
+
+.form__update--preview {
+    width: 100%;
+    height: 100px;
+    border: 1px solid #ddd;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.form__update--preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.form__update--item {
+    color: #FF5555;
+    border: 2px solid #FF5555;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    position: absolute;
+    top: 30%;
+    left: 40%;
+}
+
+.form__update--img {
+    display: none;
+}
+
+.form__sell--title {
+    border-bottom:1px solid #5F5F5F ;
+    color: #5F5F5F;
+}
+
+.form__category{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form__category--item {
+    opacity: 0;
+}
+
+.category__label {
+    color: #FF5555;
+    border: 2px solid #FF5555;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    margin: 5px 5px;
+    display: inline-block;
+    text-align: center;
+}
+
+.form__category--item:checked+.category__label {
+    background-color: #FF5555;
+    color: #FFFFFF;
+}
+
+.form__condition--item {
+    width: 100%;
+}
+
+.form__item {
+    width: 100%;
+}
+
+.form__button {
+    color: #FFF;
+    background-color: #FF5555;
+    border: 1px solid #FF5555;
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 26px;
+    cursor: pointer;
+    margin: 40px 0px;
+}
+
+.form__error {
+    color: red;
+}

@@ -27,7 +27,12 @@ class Product extends Model
     
     public function listings()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Listing::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'listings');
     }
 
     protected $table = 'products';

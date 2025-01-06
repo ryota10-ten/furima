@@ -17,13 +17,13 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        $product = Product::with('condition')->findOrFail($id);
-        $categoryIds = Category::all();
+        $product = Product::findOrFail($id);
+        $categories = $product->categories;
+        $condition = $product->condition;
 
-        $product->categories()->syncWithoutDetaching($categoryIds);
         $question = product::with('comments.user')->withCount('comments')->findOrFail($id);
 
-        return view('item', compact('product','categoryIds','question'));
+        return view('item', compact('product','condition','categories','question'));
     }
 
     public function store(CommentRequest $request)

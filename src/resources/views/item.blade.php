@@ -38,7 +38,7 @@
         <div class="content-item">
             <div class="item__detail">
                 <div class="item__detail--img">
-                    <img class="img" src="{{ $product['img']}}" alt="{{ $product['name'] }}">
+                    <img class="img" src="{{ asset('storage/' . $product['img']) }}" alt="{{ $product['name'] }}">
                 </div>
             </div>
             <div class="item__detail">
@@ -57,7 +57,7 @@
                         <span class="detail__header--title">カテゴリー</span>
                     </div>
                     <div class="detail__info">
-                        @foreach($product->categories as $category)
+                        @foreach ($categories as $category)
                         <div class="detail__info--category">{{ $category['category']}}</div>
                         @endforeach
                     </div>
@@ -67,7 +67,7 @@
                         <span class="detail__header--title">商品の状態</span>
                     </div>
                     <div class="detail__info">
-                        <div class="detail__info--condition">{{  $product['condition']['condition'] }}</div>
+                        <div class="detail__info--condition">{{  $condition['condition'] }}</div>
                     </div>
                 </div>
                 <h2 class="item__comment">コメント（{{ $question['comments_count'] }}）</h2>
