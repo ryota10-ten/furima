@@ -48,7 +48,7 @@
                     <div class="product__item">
                         <a class="product__link" href="/item/{{ $product['id'] }}">
                             <div class="product__img">
-                                <img class="img" src="{{ $product['img'] }}" alt="{{ $product['name'] }}">
+                                <img class="img" src="{{ asset('storage/' . $product['img']) }}" alt="{{ $product['name'] }}">
                             </div>
                             <div class="product__name">
                             {{ $product['name'] }}
