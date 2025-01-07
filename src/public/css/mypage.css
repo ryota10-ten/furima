@@ -131,24 +131,27 @@ input[type="radio"] {
     color:#FF0000;
 }
 
+#tab1:checked~.panel_area #panel1 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 #tab2:checked~.tab_area .tab2_label {
     background: #fff;
     color:#FF0000;
+}
+
+#tab2:checked~.panel_area #panel2 {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .panel_area>div {
     display: none;
 }
 
-.product__list {
-    display: flex;
-    flex-wrap: wrap;
-}
-
 .product__item {
     margin: 5%;
-    display: flex;
-    flex-wrap: wrap;
 }
 
 .product__link {

@@ -37,6 +37,7 @@ Route::get('/', [IndexController::class,'index']);
 Route::get('/item', [ProductController::class,'item']);
 Route::get('/item/{id}', [ProductController::class, 'show']);
 Route::post('/comments', [ProductController::class, 'store'])->middleware('ensureLoggedIn');
+Route::post('/item/{id}/like', [ProductController::class, 'favorite']);
 
 Route::get('/mypage',[ProfileController::class,'mypage']);
 

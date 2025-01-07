@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Listing;
+use Illuminate\Support\Facades\Auth;
 
 
 class ProfileController extends Controller
 {
     public function mypage()
     {
-        $products = Listing::all();
+        $user = Auth::user();
+        $listings = $user->listingProducts;
 
-        return view ('mypage',compact('products'));
+        return view ('mypage',compact('listings'));
     }
 }
