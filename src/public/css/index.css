@@ -106,7 +106,6 @@ input[type="radio"] {
 #tab2:checked~.panel_area #panel2 {
     display: flex;
     flex-wrap: wrap;
-
 }
 
 .panel_area>div {

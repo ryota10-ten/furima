@@ -62,11 +62,11 @@
             </div>
             <div class="panel_area">
                 <div id="panel1" class="product__list">
-                    @foreach ($products as $product)
+                    @foreach ($listings as $product)
                     <div class="product__item">
                         <a class="product__link" href="/item/{{ $product['id'] }}">
                             <div class="product__img">
-                                <img class="img" src="{{ $product['img'] }}" alt="{{ $product['name'] }}">
+                                <img class="img" src="{{ asset('storage/' . $product['img']) }}" alt="{{ $product['name'] }}">
                             </div>
                             <div class="product__name">
                             {{ $product['name'] }}
@@ -76,18 +76,6 @@
                     @endforeach
                 </div>
                 <div id="panel2" class="product__list">
-                    @foreach ($products as $product)
-                    <div class="product__item">
-                        <a href="/item/{{ $product['id'] }}">
-                            <div class="product__img">
-                                <img class="img" src="{{ $product['img'] }}" alt="{{ $product['name'] }}">
-                            </div>
-                            <div class="product__name">
-                            {{ $product['name'] }}
-                            </div>
-                        </a>
-                    </div>
-                    @endforeach
                 </div>
             </div>
         </div>

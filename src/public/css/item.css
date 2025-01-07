@@ -95,6 +95,50 @@
     font-size: 20px;
 }
 
+.price {
+    font-size: 30px;
+}
+
+.review {
+    display: flex;
+    justify-content: left;
+    margin: 5% 5% auto;
+    align-items: center;
+}
+
+.review__like,
+.review__comment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+}
+
+.review__favorite {
+    display: none;
+}
+
+.review__icon {
+    cursor: pointer;
+    font-size: 35px;
+}
+
+input[type="checkbox"]:checked+label .review__icon {
+    color: #FF5555;
+}
+
+input[type="checkbox"]+label .review__icon {
+    color: #ccc;
+}
+
+.favorites_count,
+.comments_count {
+    margin: 5px 0px;
+    font-size: 10px;
+    text-align: center;
+}
+
 .button__purchase{
     text-align: center;
     background-color: #FF5555;

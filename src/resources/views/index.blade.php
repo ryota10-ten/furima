@@ -58,7 +58,22 @@
                     @endforeach
                 </div>
                 <div id="panel2" class="product__list">
-                    マイリスト
+                    @if (Auth::check())
+                        @foreach ($favorites as $product)
+                        <div class="product__item">
+                            <a class="product__link" href="/item/{{ $product['id'] }}">
+                                <div class="product__img">
+                                    <img class="img" src="{{ asset('storage/' . $product['img']) }}" alt="{{ $product['name'] }}">
+                                </div>
+                                <div class="product__name">
+                                {{ $product['name'] }}
+                                </div>
+                            </a>
+                        </div>
+                        @endforeach
+                    @else
+                        <p>ログインしてください</p>
+                    @endif
                 </div>
             </div>
         </div>

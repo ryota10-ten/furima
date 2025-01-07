@@ -35,5 +35,25 @@ class Product extends Model
         return $this->belongsToMany(User::class, 'listings');
     }
 
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class); 
+    }
+
+    public function isLikedBy($userId)
+    {
+        return $this->favorites->where('user_id', $userId)->isNotEmpty();
+    }
+
+    public function favoriteUsers()
+    {
+        return $this->belongsToMany(User::class, 'favorites', 'product_id', 'user_id');
+    }
+    
+    public function listingUsers()
+    {
+        return $this->belongsToMany(User::class, 'listings', 'product_id', 'user_id');
+    }
+
     protected $table = 'products';
 }
