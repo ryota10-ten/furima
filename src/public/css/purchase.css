@@ -183,3 +183,8 @@
     cursor: pointer;
     display: block;
 }
+
+.form__error {
+    color: red;
+    text-align: center;
+}

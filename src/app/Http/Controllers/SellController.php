@@ -35,8 +35,13 @@ class SellController extends Controller
         $item->categories()->attach($selectedCategories);
         $user = Auth::user();
         $item->users()->attach($user->id);
-
-        $products = Product::all();
-        return view('index',compact('products'));
+        $favorites = $user->favoriteProducts;
+        $userId = Auth::id();
+        $products = Product::with('orders')->whereDoesntHave
+            ('users', function ($query) use ($userId)
+            {
+                $query->where('user_id', $userId);
+            })->get();
+        return view('index',compact('products','favorites'));
     }
 }

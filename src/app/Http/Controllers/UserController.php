@@ -47,6 +47,7 @@ class UserController extends Controller
         if ($profileRequest->hasFile('icon')) {
             $icon = $profileRequest->file('icon')->store('icons', 'public');
         }
+        $products =  Product::all();
 
         if (Auth::check()) {
             $user = Auth::user();
@@ -57,6 +58,9 @@ class UserController extends Controller
                 'post'      => $addressRequest->input('post'),
                 'building'  => $addressRequest->input('building'),
             ]);
+
+            return view('index',compact('products'));
+
         }else {
             User::create([
                 'name'      => $addressRequest->input('name'),
@@ -67,17 +71,8 @@ class UserController extends Controller
                 'post'      => $addressRequest->input('post'),
                 'building'  => $addressRequest->input('building'),
             ]);
+
+            return view('login');
         }
-
-        $email = $addressRequest->input('email');
-        $user = User::where('email', $email)->first();
-
-        if ($user->first_login) {
-            $user->update(['first_login' => false]);
-        }
-
-        $products =  Product::all();
-
-        return view('index',compact('products'));
     }
 }

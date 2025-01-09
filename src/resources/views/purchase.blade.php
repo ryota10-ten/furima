@@ -123,6 +123,11 @@
                     <input type="hidden" name="address" value="{{ $address['address'] }}">
                     <input type="hidden" name="building" value="{{ $address['building'] }}">
                     @endif
+                    <div class="form__error">
+                        @error('method')
+                        {{ $message }}
+                        @enderror
+                    </div>
                     <button class="button__purchase" type="submit">
                         購入する
                     </button>
