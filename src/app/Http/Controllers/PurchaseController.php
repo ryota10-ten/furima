@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use App\Models\Order;
 use App\Http\Requests\AddressRequest;
+use App\Http\Requests\PurchaseRequest;
 
 
 class PurchaseController extends Controller
@@ -67,7 +68,7 @@ class PurchaseController extends Controller
         return view ('address', compact('user','product'));
     }
 
-    public function fix(Request $request, $id)
+    public function fix(PurchaseRequest $request, $id)
     {
         Order::create([
             'product_id' => $request->product_id,
@@ -77,9 +78,14 @@ class PurchaseController extends Controller
             'address' => $request->address,
             'building' => $request->building,
         ]);
-        $products = Product::with('orders')->get();
         $user = Auth::user();
         $favorites = $user->favoriteProducts;
+        $userId = Auth::id();
+        $products = Product::with('orders')->whereDoesntHave
+            ('users', function ($query) use ($userId)
+            {
+                $query->where('user_id', $userId);
+            })->get();
         
         return view('index',compact('products','favorites'));
     }

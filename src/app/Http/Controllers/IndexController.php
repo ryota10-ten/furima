@@ -10,14 +10,23 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $products = Product::with('orders')->get();
         if (Auth::check())
         {
             $user = Auth::user();
+            $userId = Auth::id();
             $favorites = $user->favoriteProducts;
+            $userId = Auth::id();
+            $products = Product::with('orders')->whereDoesntHave
+            ('users', function ($query) use ($userId)
+            {
+                $query->where('user_id', $userId);
+            })->get();
+
         }else{
             $favorites = null;
+            $products = Product::with('orders')->get();
         }
+
         return view('index',compact('products','favorites'));
     }
 }
