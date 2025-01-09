@@ -1,0 +1,94 @@
+.header {
+    width: 100%;
+}
+
+.header__inner {
+    background-color: black;
+    padding: 20px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__logo {
+    padding: 5px 5px;
+}
+
+.header__search {
+    width: 30%;
+}
+
+.header__search--item {
+    padding: 5px 10px;
+    width: 100%;
+}
+
+.header__buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.header__button--logout {
+    background-color: black;
+    color: #FFF;
+    border: none;
+    font-size: 20px;
+}
+
+.header__button--mypage {
+    color: #FFF;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.header__button--sell {
+    background-color: #FFF;
+    color: black;
+    padding: 0px 10px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.content {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.content__title {
+    text-align: center;
+}
+
+.content__form {
+    margin: 0 auto;
+    width: 50%;
+}
+
+.form__update--label {
+    display: block;
+    font-size: 24px;
+}
+
+.form__update--item {
+    padding: 5px;
+    width: 100%;
+    font-size: 24px;
+    margin: 5px;
+}
+
+.form__update--button {
+    display: block;
+    margin: 40px 0px;
+    text-align: center;
+    width: 100%;
+    background-color: #FF5555;
+    color: #FFF;
+    border-radius: 5px;
+    border: 1px solid #FF5555;
+    padding: 10px;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.form__error {
+    color: red;
+}

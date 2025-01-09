@@ -81,6 +81,14 @@
     padding: 5px;
 }
 
+.product__sold {
+    background-color: #FF5555;
+    color: #FFF;
+    text-align: center;
+    display: inline-block;
+    margin: 0 auto;
+}
+
 .item__detail--name{
     font-size: 30px;
     font-weight: bold;

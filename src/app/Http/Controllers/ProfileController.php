@@ -12,7 +12,8 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $listings = $user->listingProducts;
+        $orders = $user->orderProducts;
 
-        return view ('mypage',compact('listings'));
+        return view ('mypage',compact('listings','orders'));
     }
 }

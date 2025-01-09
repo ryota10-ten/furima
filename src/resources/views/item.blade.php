@@ -45,8 +45,13 @@
                 <p class="item__detail--name">{{ $product['name'] }}</p>
                 <p class="item__detail--brand"></p>
                 <p class="item__detail--price">
-                    ¥<span class="price">{{ number_format($product['price']) }}</span>円（税込）
+                    &yen;<span class="price">{{ number_format($product['price']) }}</span>円（税込）
                 </p>
+                @if ($product->orders->isNotEmpty())
+                <p class="product__sold">
+                    SOLD
+                </p>
+                @endif
                 <div class=review>
                     <div class="review__like">
                         <form class="form__review" method="post" action="/item/{{ $product['id'] }}/like">
@@ -72,7 +77,7 @@
                         </div>
                     </div>
                 </div>
-                <form class="item__purchase">
+                <form class="item__purchase" action="/purchase/{{ $product['id'] }}" method="post">
                 @csrf
                     <input type="hidden" name="id" value="{{ $product['id'] }}">
                     <button class="button__purchase" type="submit">

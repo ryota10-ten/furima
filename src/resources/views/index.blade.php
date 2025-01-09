@@ -52,6 +52,9 @@
                             </div>
                             <div class="product__name">
                             {{ $product['name'] }}
+                            @if ($product->orders->isNotEmpty())
+                            <div class="product__sold">SOLD</div>
+                            @endif
                             </div>
                         </a>
                     </div>

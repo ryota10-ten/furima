@@ -54,7 +54,6 @@ class UserController extends Controller
                 'name'      => $addressRequest->input('name'),
                 'icon'      => $icon,
                 'address'   => $addressRequest->input('address'),
-                'email'     => $addressRequest->input('email'),
                 'post'      => $addressRequest->input('post'),
                 'building'  => $addressRequest->input('building'),
             ]);

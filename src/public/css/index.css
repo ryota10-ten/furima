@@ -134,3 +134,9 @@ input[type="radio"] {
     font-size: 25px;
     color: black;
 }
+
+.product__sold {
+    background-color: #FF5555;
+    color: #FFF;
+    text-align: left;
+}

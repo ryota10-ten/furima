@@ -37,7 +37,7 @@ class Product extends Model
 
     public function favorites()
     {
-        return $this->hasMany(Favorite::class); 
+        return $this->hasMany(Favorite::class);
     }
 
     public function isLikedBy($userId)
@@ -53,6 +53,16 @@ class Product extends Model
     public function listingUsers()
     {
         return $this->belongsToMany(User::class, 'listings', 'product_id', 'user_id');
+    }
+
+    public function orderUsers()
+    {
+        return $this->belongsToMany(User::class, 'orders', 'product_id', 'user_id');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 
     protected $table = 'products';
