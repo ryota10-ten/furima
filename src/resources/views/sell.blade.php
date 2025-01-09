@@ -105,7 +105,7 @@
                         @enderror
                     </div>
                     <h3 class="form__item--title">販売価格</h3>
-                    <input class="form__item" type="text" name="price" value="¥">
+                    <input class="form__item" type="text" name="price" value="&yen;">
                     <div class="form__error">
                         @error('price')
                         {{ $message }}

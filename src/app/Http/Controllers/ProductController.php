@@ -13,10 +13,6 @@ use App\Http\Requests\CommentRequest;
 
 class ProductController extends Controller
 {
-    public function item(){
-        return view ('item');
-    }
-
     public function show($id)
     {
         $product = Product::with(['favorites','comments'])->findOrFail($id);

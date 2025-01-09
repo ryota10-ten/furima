@@ -69,13 +69,33 @@
                                 <img class="img" src="{{ asset('storage/' . $product['img']) }}" alt="{{ $product['name'] }}">
                             </div>
                             <div class="product__name">
-                            {{ $product['name'] }}
+                                {{ $product['name'] }}
                             </div>
+                            @if ($product->orders->isNotEmpty())
+                            <div class="product__sold">
+                                SOLD
+                            </div>
+                            @endif
                         </a>
                     </div>
                     @endforeach
                 </div>
                 <div id="panel2" class="product__list">
+                    @foreach ($orders as $product)
+                    <div class="product__item">
+                        <a class="product__link" href="/item/{{ $product['id'] }}">
+                            <div class="product__img">
+                                <img class="img" src="{{ asset('storage/' . $product['img']) }}" alt="{{ $product['name'] }}">
+                            </div>
+                            <div class="product__name">
+                                {{ $product['name'] }}
+                            </div>
+                            <div class="product__sold">
+                                SOLD
+                            </div>
+                        </a>
+                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

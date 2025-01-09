@@ -1,0 +1,185 @@
+.header {
+    width: 100%;
+}
+
+.header__inner {
+    background-color: black;
+    padding: 20px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__logo {
+    padding: 5px 5px;
+}
+
+.header__search {
+    width: 30%;
+}
+
+.header__search--item {
+    padding: 5px 10px;
+    width: 100%;
+}
+
+.header__buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.header__button--logout {
+    background-color: black;
+    color: #FFF;
+    border: none;
+    font-size: 20px;
+}
+
+.header__button--login {
+    color: #FFF;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.header__button--mypage {
+    color: #FFF;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.header__button--sell {
+    background-color: #FFF;
+    color: black;
+    padding: 0px 10px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.content {
+    width: 100%;
+}
+
+.content__purchase {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10% 5% auto;
+}
+
+.purchase__info {
+    width: 100%;
+}
+
+.item__info {
+    display: flex;
+    justify-content: left;
+    border-bottom: 1px solid #000;
+    padding-bottom: 10%;
+    width: 100%;
+}
+
+.item__info--img {
+    width: 50%;
+    margin-right: 5%;
+}
+
+.item__info--img img {
+    width: 100%;
+    object-fit: contain;
+}
+
+.item__info--detail {
+    width: 50%;
+}
+
+.item__name {
+    font-weight: bold;
+    font-size: 30px;
+    margin: 0 auto;
+}
+
+.item__price {
+    font-size: 30px;
+    margin: 0 auto;
+}
+
+.item__price span {
+    font-size: smaller;
+}
+
+.purchase__method {
+    width: 100%;
+    border-bottom: 1px solid #000;
+    padding-bottom: 10%;
+}
+
+.purchase__method--header {
+    padding-left: 5%;
+}
+
+.purchase__method--select {
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+}
+
+.purchase__address {
+    width: 100%;
+    border-bottom: 1px solid #000;
+    padding-bottom: 10%;
+}
+
+.address__navi {
+    display: flex;
+    justify-content: space-between;
+    padding:0 5%;
+}
+
+.address__edit a {
+    text-decoration: none;
+}
+
+.address__info {
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    font-weight: bold;
+}
+
+.purchase__form {
+    width: 100%;
+}
+
+.form__table {
+    margin: 0 auto;
+    border: 1px solid #000;
+    width: 70%;
+}
+
+.form__table--header ,.form__table--item {
+    border-bottom: 1px solid #000;
+    padding: 20px;
+    text-align: center;
+}
+
+.form__table--item input {
+    border: none;
+    text-align: center;
+}
+
+.price__font {
+    font-size: smaller;
+}
+
+.button__purchase {
+    color: #FFF;
+    background-color: #FF5555;
+    border: 1px solid #FF5555;
+    text-align: center;
+    margin: 5% auto;
+    width: 70%;
+    padding: 10px;
+    font-size: 26px;
+    cursor: pointer;
+    display: block;
+}

@@ -10,13 +10,14 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $products = Product::with('orders')->get();
         if (Auth::check())
         {
             $user = Auth::user();
             $favorites = $user->favoriteProducts;
+        }else{
+            $favorites = null;
         }
-
         return view('index',compact('products','favorites'));
     }
 }

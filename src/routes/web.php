@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Middleware\EnsureUserIsLoggedIn;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellController;
+use App\Http\Controllers\PurchaseController;
 
 
 /*
@@ -43,3 +44,11 @@ Route::get('/mypage',[ProfileController::class,'mypage']);
 
 Route::get('/sell',[SellController::class,'sell']);
 Route::post('/sell',[SellController::class,'store']);
+
+Route::get('/purchase',[PurchaseController::class,'purchase']);
+Route::post('/purchase/{id}',[PurchaseController::class,'buy']);
+Route::post('/purchase/method/{id}',[PurchaseController::class,'updateMethod']);
+Route::get('/purchase/{id}', [PurchaseController::class, 'show']);
+Route::get('/purchase/address/{id}',[PurchaseController::class, 'edit']);
+Route::post('/purchase/address/{id}',[PurchaseController::class, 'update']);
+Route::post('/purchase/fix/{id}',[PurchaseController::class,'fix']);
