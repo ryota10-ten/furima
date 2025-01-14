@@ -17,9 +17,10 @@
             <div class="header__logo">
                 <img class="header__logo--img" src="{{asset('img/logo.svg')}}" alt="CoachTech">
             </div>
-            <div class="header__search">
-                <input class="header__search--item" type="text" placeholder="なにをお探しですか？">
-            </div>
+            <form class="header__search" method="get" action="/search">
+            @csrf
+                <input class="header__search--item" type="text" name="keyword" placeholder="なにをお探しですか？">
+            </form>
             <div class="header__buttons">
                 @if (Auth::check())
                 <form method="POST" action="/logout">

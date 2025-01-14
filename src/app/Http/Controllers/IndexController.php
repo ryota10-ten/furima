@@ -29,4 +29,26 @@ class IndexController extends Controller
 
         return view('index',compact('products','favorites'));
     }
+
+    public function search(Request $request)
+    {
+        if (Auth::check())
+        {
+            $user = Auth::user();
+            $userId = Auth::id();
+            $favorites = $user->favoriteProducts;
+            $userId = Auth::id();
+            $products = Product::with('orders')->whereDoesntHave
+            ('users', function ($query) use ($userId)
+            {
+                $query->where('user_id', $userId);
+            })->KeywordSearch($request->keyword)->get();
+
+        }else{
+            $favorites = null;
+            $products = Product::with('orders')->KeywordSearch($request->keyword)->get();
+        }
+
+        return view('index',compact('products','favorites'));
+    }
 }

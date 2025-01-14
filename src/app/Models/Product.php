@@ -15,6 +15,14 @@ class Product extends Model
         return $this->belongsTo(Condition::class);
     }
 
+    public function scopeKeywordSearch($query, $keyword)
+    {
+        if (!empty($keyword))
+        {
+            $query->where('name', 'like', '%' . $keyword . '%');
+        }
+    }
+
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'category_product');

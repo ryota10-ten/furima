@@ -34,6 +34,7 @@ Route::post('/login',[LoginController::class,'login']);
 Route::post('/logout',[LoginController::class,'logout']);
 
 Route::get('/', [IndexController::class,'index']);
+Route::get('/search',[IndexController::class,'search']);
 
 Route::get('/item', [ProductController::class,'item']);
 Route::get('/item/{id}', [ProductController::class, 'show']);
