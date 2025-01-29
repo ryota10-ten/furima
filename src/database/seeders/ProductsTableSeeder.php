@@ -78,7 +78,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'メイクセット',
-                'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Tumbler+souvenir.jpg',
+                'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/%E5%A4%96%E5%87%BA%E3%83%A1%E3%82%A4%E3%82%AF%E3%82%A2%E3%83%83%E3%83%95%E3%82%9A%E3%82%BB%E3%83%83%E3%83%88.jpg',
                 'price' => 2500,
                 'detail' => '便利なメイクアップセット',
                 'condition_id' => 2,

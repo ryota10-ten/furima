@@ -10,6 +10,7 @@ use App\Http\Requests\ProfileRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
+use Illuminate\Auth\Events\Registered;
 
 class UserController extends Controller
 {
@@ -62,7 +63,7 @@ class UserController extends Controller
             return view('index',compact('products'));
 
         }else {
-            User::create([
+            $user = User::create([
                 'name'      => $addressRequest->input('name'),
                 'icon'      => $icon,
                 'address'   => $addressRequest->input('address'),
@@ -71,8 +72,9 @@ class UserController extends Controller
                 'post'      => $addressRequest->input('post'),
                 'building'  => $addressRequest->input('building'),
             ]);
+            event(new Registered($user));
 
-            return view('login');
+            return redirect()->route('login')->with('message', '登録が完了しました。メール認証を行ってください。');
         }
     }
 }

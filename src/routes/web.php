@@ -9,6 +9,7 @@ use App\Http\Middleware\EnsureUserIsLoggedIn;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\Auth\VerificationController;
 
 
 /*
@@ -23,13 +24,17 @@ use App\Http\Controllers\PurchaseController;
 */
 
 
+Route::get('/email/verify', [VerificationController::class, 'show'])->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
+Route::post('/email/verification-notification', [VerificationController::class, 'resend'])->name('verification.send');
+
 Route::get('/register', [UserController::class, 'register']);
 
 Route::post('/mypage/profile/', [UserController::class, 'store']);
 Route::get('/mypage/profile/', [UserController::class, 'edit']);
 Route::post('/',[UserController::class,'add']);
 
-Route::get('/login',[LoginController::class,'index']);
+Route::get('/login',[LoginController::class,'index'])->name('login');
 Route::post('/login',[LoginController::class,'login']);
 Route::post('/logout',[LoginController::class,'logout']);
 
