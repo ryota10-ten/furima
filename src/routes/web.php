@@ -31,7 +31,7 @@ Route::post('/email/verification-notification', [VerificationController::class, 
 Route::get('/register', [UserController::class, 'register']);
 
 Route::post('/mypage/profile/', [UserController::class, 'store']);
-Route::get('/mypage/profile/', [UserController::class, 'edit']);
+
 Route::post('/',[UserController::class,'add']);
 
 Route::get('/login',[LoginController::class,'index'])->name('login');
@@ -41,20 +41,21 @@ Route::post('/logout',[LoginController::class,'logout']);
 Route::get('/', [IndexController::class,'index']);
 Route::get('/search',[IndexController::class,'search']);
 
-Route::get('/item', [ProductController::class,'item']);
 Route::get('/item/{id}', [ProductController::class, 'show']);
-Route::post('/comments', [ProductController::class, 'store'])->middleware('ensureLoggedIn');
-Route::post('/item/{id}/like', [ProductController::class, 'favorite']);
-
-Route::get('/mypage',[ProfileController::class,'mypage']);
-
-Route::get('/sell',[SellController::class,'sell']);
-Route::post('/sell',[SellController::class,'store']);
-
-Route::get('/purchase',[PurchaseController::class,'purchase']);
-Route::post('/purchase/{id}',[PurchaseController::class,'buy']);
-Route::post('/purchase/method/{id}',[PurchaseController::class,'updateMethod']);
-Route::get('/purchase/{id}', [PurchaseController::class, 'show']);
-Route::get('/purchase/address/{id}',[PurchaseController::class, 'edit']);
-Route::post('/purchase/address/{id}',[PurchaseController::class, 'update']);
-Route::post('/purchase/fix/{id}',[PurchaseController::class,'fix']);
+Route::middleware('auth')->group(function () {
+    Route::get('/mypage/profile/', [UserController::class, 'edit']);
+    Route::post('/comments', [ProductController::class, 'store']);
+    Route::post('/item/{id}/like', [ProductController::class, 'favorite']);
+    Route::get('/mypage',[ProfileController::class,'mypage']);
+    Route::get('/sell',[SellController::class,'sell']);
+    Route::post('/sell',[SellController::class,'store']);
+    Route::get('/purchase',[PurchaseController::class,'purchase']);
+    Route::post('/purchase/{id}',[PurchaseController::class,'buy']);
+    Route::post('/purchase/method/{id}',[PurchaseController::class,'updateMethod']);
+    Route::get('/purchase/{id}', [PurchaseController::class, 'show']);
+    Route::get('/purchase/address/{id}',[PurchaseController::class, 'edit']);
+    Route::post('/purchase/address/{id}',[PurchaseController::class, 'update']);
+    Route::post('/purchase/fix/{id}',[PurchaseController::class,'fix'])->name('purchase.fix');
+    Route::get('/success', [PurchaseController::class, 'success'])->name('success');
+    Route::get('/cancel', [PurchaseController::class, 'cancel'])->name('cancel');
+});

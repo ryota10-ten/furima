@@ -9,6 +9,9 @@ use App\Models\Product;
 use App\Models\Order;
 use App\Http\Requests\AddressRequest;
 use App\Http\Requests\PurchaseRequest;
+use Stripe\Stripe;
+use Stripe\Checkout\Session;
+
 
 
 class PurchaseController extends Controller
@@ -70,24 +73,75 @@ class PurchaseController extends Controller
 
     public function fix(PurchaseRequest $request, $id)
     {
-        Order::create([
-            'product_id' => $request->product_id,
-            'user_id' => auth()->id(),
-            'method' => $request->method,
-            'post' => $request->post,
-            'address' => $request->address,
-            'building' => $request->building,
+        $product = Product::findOrFail($id);
+        \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
+        $paymentMethods = ['card'];  // デフォルトでカード支払い
+        if ($request->method === 'コンビニ払い') {
+            $paymentMethods[] = 'konbini'; // コンビニ支払いが選択された場合、追加
+        }
+        $session = \Stripe\Checkout\Session::create([
+            'payment_method_types' => $paymentMethods,
+            'line_items' => [[
+            'price_data' => [
+                'currency' => 'jpy',
+                'product_data' => [
+                    'name' => $product->name,
+                ],
+                'unit_amount' => $product->price,
+            ],
+            'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => route('success') . '?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => url('/'),
+            'metadata' => [
+                'product_id' => $product->id,
+                'user_id' => auth()->id(),
+                'payment_method' => $request->method,
+                'post' => $request->post,
+                'address' => $request->address,
+                'building' => $request->building,
+            ]
         ]);
-        $user = Auth::user();
-        $favorites = $user->favoriteProducts;
-        $userId = Auth::id();
-        $products = Product::with('orders')->whereDoesntHave
-            ('users', function ($query) use ($userId)
-            {
-                $query->where('user_id', $userId);
-            })->get();
-        
-        return view('index',compact('products','favorites'));
+
+        return redirect($session->url);
     }
 
+    public function success(Request $request)
+    {
+        $sessionId = $request->query('session_id');
+        if (!$sessionId) {
+            return redirect('/')->with('error', '決済情報が見つかりませんでした。');
+        }
+        \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
+
+        try {
+            $session = \Stripe\Checkout\Session::retrieve($sessionId);
+        } catch (\Exception $e) {
+            return redirect('/')->with('error', '決済情報の取得に失敗しました。');
+        }
+        $productId = $session->metadata->product_id;
+        $method = $session->metadata->payment_method;
+        $post = $session->metadata->post;
+        $address = $session->metadata->address;
+        $building = $session->metadata->building ?? null;
+
+        $userId = Auth::id();
+
+        Order::create([
+            'product_id' => $productId,
+            'user_id' => $userId,
+            'method' => $method,
+            'post' => $post,
+            'address' => $address,
+            'building' => $building,
+        ]);
+
+        return redirect('/');
+    }
+
+    public function cancel()
+    {
+        return redirect('/');
+    }
 }

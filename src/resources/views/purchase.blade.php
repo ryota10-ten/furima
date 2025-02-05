@@ -94,7 +94,7 @@
                 </div>
             </div>
             <div class="purchase__form">
-                <form class="form" action="/purchase/fix/{{ $product['id'] }}" method="post" >
+                <form class="form" action="{{ route('purchase.fix', ['id' => $product->id]) }}" method="post" >
                 @csrf
                     <table class="form__table">
                         <tr class="form__table--row">
