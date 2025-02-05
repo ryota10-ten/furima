@@ -46,10 +46,6 @@ class Kernel extends HttpKernel
         ],
     ];
 
-    protected $except = [
-        '/purchase/success',
-    ];
-
     /**
      * The application's route middleware.
      *
