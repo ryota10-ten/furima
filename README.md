@@ -103,6 +103,7 @@ http://localhost/
 にアクセスするとアプリを確認できます。
 
 
+<img width="876" alt="スクリーンショット 2025-02-20 11 04 37" src="https://github.com/user-attachments/assets/5fa53da1-0c3f-4b65-b644-bcfdea26d0bc" />
 
 
 
