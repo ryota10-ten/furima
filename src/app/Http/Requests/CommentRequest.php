@@ -24,7 +24,7 @@ class CommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'comment' =>'required',
+            'comment' =>'required|max:255',
             'product_id' => 'required|exists:products,id',
         ];
     }
@@ -32,7 +32,8 @@ class CommentRequest extends FormRequest
     public function messages()
     {
         return [
-            'comment.required'=>'コメントを入力してください'
+            'comment.required'=>'コメントを入力してください',
+            'comment.max'=>'パスワードは最大:max文字以下で入力してください',
         ];
     }
 }

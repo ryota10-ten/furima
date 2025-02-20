@@ -15,7 +15,9 @@
     <header class="header">
         <div class="header__inner">
             <div class="header__logo">
-                <img class="header__logo--img" src="{{asset('img/logo.svg')}}" alt="CoachTech">
+                <a href="/">
+                    <img class="header__logo--img" src="{{asset('img/logo.svg')}}" alt="CoachTech">
+                </a>
             </div>
             <form class="header__search" method="get" action="/search">
             @csrf
@@ -44,7 +46,7 @@
             </div>
             <div class="item__detail">
                 <p class="item__detail--name">{{ $product['name'] }}</p>
-                <p class="item__detail--brand"></p>
+                <p class="item__detail--brand">{{ $product['brand'] }}</p>
                 <p class="item__detail--price">
                     &yen;<span class="price">{{ number_format($product['price']) }}</span>円（税込）
                 </p>

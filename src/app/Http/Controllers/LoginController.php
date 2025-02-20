@@ -30,10 +30,10 @@ class LoginController extends Controller
             return redirect()->intended('/');
         } else {
             \Log::info('ログイン失敗', $request->only('email', 'password'));
-            
+
             return back()->withErrors([
-                'email' => '認証に失敗しました。',
-                'password' => '認証に失敗しました。',
+                'email' => 'ログイン情報が登録されていません',
+                'password' => 'ログイン情報が登録されていません',
             ]);
         }
     }
@@ -42,9 +42,7 @@ class LoginController extends Controller
     {
         Auth::logout();
 
-        $products = Product::all();
-
-        return view('index',compact('products'));
+        return redirect('/');
     }
 
 }

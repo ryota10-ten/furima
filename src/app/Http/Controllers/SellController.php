@@ -22,11 +22,11 @@ class SellController extends Controller
     public function store(ExhibitionRequest $request)
     {
         $img = $request->file('img')->store('imgs', 'public');
-        $item = $request->all();
         $selectedCategories = $request->input('category');
         $item = Product::create([
             'name' => $request->input('name'),
             'img' => $img,
+            'brand' => $request->input('brand'),
             'price' => $request->input('price'),
             'detail' => $request->input('detail'),
             'condition_id' => $request->input('condition_id'),

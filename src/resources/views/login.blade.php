@@ -14,7 +14,9 @@
 <body>
     <header class="header">
         <div class="header__inner">
-            <img class="header__logo" src="{{asset('img/logo.svg')}}" alt="CoachTech">
+            <a href="/">
+                <img class="header__logo--img" src="{{asset('img/logo.svg')}}" alt="CoachTech">
+            </a>
         </div>
     </header>
     <main class="content">
@@ -22,20 +24,6 @@
             ログイン
         </h1>
         <div class="content__form">
-            @if (session('message'))
-                <div class="alert alert-success">
-                    {{ session('message') }}
-                </div>
-            @endif
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             <form class="form__login" action="/login" method="post">
                 @csrf
                 <label class="form__login--label">ユーザー名 / メールアドレス</label>

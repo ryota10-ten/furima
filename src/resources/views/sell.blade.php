@@ -15,7 +15,9 @@
     <header class="header">
         <div class="header__inner">
             <div class="header__logo">
-                <img class="header__logo--img" src="{{asset('img/logo.svg')}}" alt="CoachTech">
+                <a href="/">
+                    <img class="header__logo--img" src="{{asset('img/logo.svg')}}" alt="CoachTech">
+                </a>
             </div>
             <form class="header__search" method="get" action="/search">
             @csrf
@@ -95,6 +97,13 @@
                     <input class="form__item" type="text" name="name" value="{{ old('name') }}">
                     <div class="form__error">
                         @error('name')
+                        {{ $message }}
+                        @enderror
+                    </div>
+                    <h3 class="form__item--title">ブランド名</h3>
+                    <input class="form__item" type="text" name="brand" value="{{ old('brand') }}">
+                    <div class="form__error">
+                        @error('brand')
                         {{ $message }}
                         @enderror
                     </div>
