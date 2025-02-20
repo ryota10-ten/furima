@@ -112,8 +112,13 @@
     margin: 0 auto;
 }
 
-.item__detail--name{
+.item__detail--name {
     font-size: 30px;
+    font-weight: bold;
+}
+
+.item__detail--brand {
+    font-size: 10px;
     font-weight: bold;
 }
 

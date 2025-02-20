@@ -15,7 +15,9 @@
     <header class="header">
         <div class="header__inner">
             <div class="header__logo">
-                <img class="header__logo--img" src="{{asset('img/logo.svg')}}" alt="CoachTech">
+                <a href="/">
+                    <img class="header__logo--img" src="{{asset('img/logo.svg')}}" alt="CoachTech">
+                </a>
             </div>
             <form class="header__search" method="get" action="/search">
             @csrf
@@ -83,12 +85,12 @@
                         </p>
                     </div>
                     <div class="address__info">
-                        @if(is_null($address))
-                        〒{{ $user['post'] }}<br>
-                        {{ $user['address'].$user['building'] }}
+                        @if(empty($address))
+                            〒{{ $user['post'] }}<br>
+                            {{ $user['address'] }}{{ $user['building'] }}
                         @else
-                        〒{{ $address['post'] }}<br>
-                        {{ $address['address'].$address['building'] }}
+                            〒{{ $address['post'] }}<br>
+                            {{ $address['address'] }}{{ $address['building'] }}
                         @endif
                     </div>
                 </div>

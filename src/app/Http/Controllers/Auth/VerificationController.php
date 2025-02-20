@@ -29,11 +29,11 @@ class VerificationController extends Controller
     {
         $user = $request->user();
         if ($user->hasVerifiedEmail()) {
-            return redirect('/')->with('message', 'すでにメール認証が完了しています。');
+            return redirect('profile')->with('message', 'すでにメール認証が完了しています。');
         }
         $user->markEmailAsVerified();
         Auth::login($user);
-        return redirect('/');
+        return redirect('/mypage/profile/');
     }
 
     /**

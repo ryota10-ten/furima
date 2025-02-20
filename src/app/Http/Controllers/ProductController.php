@@ -59,6 +59,6 @@ class ProductController extends Controller
                 $favorite->delete();
             }
         }
-        return redirect()->back();
+        return redirect()->route('item.show', ['id' => $id]);
     }
 }

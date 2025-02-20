@@ -15,6 +15,7 @@ class ProductsTableSeeder extends Seeder
         $products = [
             [
                 'name' => '腕時計',
+                'brand' => 'A',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Armani+Mens+Clock.jpg',
                 'price' => 15000,
                 'detail' => 'スタイリッシュなデザインのメンズ腕時計',
@@ -22,6 +23,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'HDD',
+                'brand' => 'A',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/HDD+Hard+Disk.jpg',
                 'price' => 5000,
                 'detail' => '高速で信頼性の高いハードディスク',
@@ -29,6 +31,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => '玉ねぎ3束',
+                'brand' => 'A',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/iLoveIMG+d.jpg',
                 'price' => 300,
                 'detail' => '新鮮な玉ねぎ3束のセット',
@@ -36,6 +39,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => '革靴',
+                'brand' => 'A',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Leather+Shoes+Product+Photo.jpg',
                 'price' => 4000,
                 'detail' => 'クラシックなデザインの革靴',
@@ -43,6 +47,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'ノートPC',
+                'brand' => 'A',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Living+Room+Laptop.jpg',
                 'price' => 45000,
                 'detail' => '高性能なノートパソコン',
@@ -50,6 +55,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'マイク',
+                'brand' => 'A',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Music+Mic+4632231.jpg',
                 'price' => 8000,
                 'detail' => '高音質のレコーディング用マイク',
@@ -57,6 +63,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'ショルダーバッグ',
+                'brand' => 'A',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Purse+fashion+pocket.jpg',
                 'price' => 3500,
                 'detail' => 'おしゃれなショルダーバッグ',
@@ -64,6 +71,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'タンブラー',
+                'brand' => 'A',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Tumbler+souvenir.jpg',
                 'price' => 500,
                 'detail' => '使いやすいタンブラー',
@@ -71,6 +79,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'コーヒーミル',
+                'brand' => 'A',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Waitress+with+Coffee+Grinder.jpg',
                 'price' => 4000,
                 'detail' => '手動のコーヒーミル',
@@ -78,6 +87,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'メイクセット',
+                'brand' => 'A',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/%E5%A4%96%E5%87%BA%E3%83%A1%E3%82%A4%E3%82%AF%E3%82%A2%E3%83%83%E3%83%95%E3%82%9A%E3%82%BB%E3%83%83%E3%83%88.jpg',
                 'price' => 2500,
                 'detail' => '便利なメイクアップセット',
@@ -87,12 +97,13 @@ class ProductsTableSeeder extends Seeder
 
         foreach ($products as $product) {
             $imageContent = file_get_contents($product['img_url']);
-            $imageName = 'imgs/' . Str::random(10) . '.jpg'; 
+            $imageName = 'imgs/' . Str::random(10) . '.jpg';
             Storage::disk('public')->put($imageName, $imageContent);
 
             DB::table('products')->insert([
                 'name' => $product['name'],
-                'img' => $imageName, 
+                'brand' => $product['brand'],
+                'img' => $imageName,
                 'price' => $product['price'],
                 'detail' => $product['detail'],
                 'condition_id' => $product['condition_id'],

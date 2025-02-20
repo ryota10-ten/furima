@@ -14,7 +14,9 @@
 <body>
     <header class="header">
         <div class="header__inner">
-            <img class="header__logo" src="{{asset('img/logo.svg')}}" alt="CoachTech">
+            <a href="/">
+                <img class="header__logo--img" src="{{asset('img/logo.svg')}}" alt="CoachTech">
+            </a>
         </div>
     </header>
     <main class="content">
@@ -26,6 +28,11 @@
                 @csrf
                 <label class="form__register--label">ユーザー名</label>
                 <input class="form__register--item" type="text" name="name" value="">
+                <div class="form__error">
+                        @error('name')
+                        {{ $message }}
+                        @enderror
+                </div>
                 <label class="form__register--label">メールアドレス</label>
                 <input class="form__register--item" type="email" name="email" value="">
                 <div class="form__error">
@@ -42,11 +49,6 @@
                 </div>
                 <label class="form__register--label">確認用パスワード</label>
                 <input class="form__register--item" type="password" name="password_confirmation" value="" >
-                <div class="form__error">
-                    @error('password')
-                    {{ $message }}
-                    @enderror
-                </div>
                 <button class="form__register--button" type="submit">登録する</button>
             </form>
         </div>

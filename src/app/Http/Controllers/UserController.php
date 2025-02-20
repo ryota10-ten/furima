@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 class UserController extends Controller
 {
@@ -27,18 +28,21 @@ class UserController extends Controller
 
     public function store(RegisterRequest $request)
     {
-        $profile = $request->input();
-        $request->session()->put('profile', $profile);
-        return view ('profile',compact('profile'));
+        $profile = User::create([
+            'name'      => $request->input('name'),
+            'password'  => Hash::make($request->input('password')),
+            'email'     => $request->input('email'),
+        ]);
+        Auth::login($profile);
+        event(new Registered($profile));
+
+        return redirect()->route('verification.notice');
     }
 
     public function edit(Request $request)
     {
         $user = Auth::user();
         $profile = User::where('email', $user->email)->first();
-        if (!$profile){
-            $profile = $request->session()->get('profile');
-        }
         return view ('profile',compact('profile'));
     }
 
@@ -49,32 +53,16 @@ class UserController extends Controller
             $icon = $profileRequest->file('icon')->store('icons', 'public');
         }
         $products =  Product::all();
+        $user = Auth::user();
+        $user->update([
+            'name'      => $addressRequest->input('name'),
+            'icon'      => $icon,
+            'address'   => $addressRequest->input('address'),
+            'post'      => $addressRequest->input('post'),
+            'building'  => $addressRequest->input('building'),
+        ]);
 
-        if (Auth::check()) {
-            $user = Auth::user();
-            $user->update([
-                'name'      => $addressRequest->input('name'),
-                'icon'      => $icon,
-                'address'   => $addressRequest->input('address'),
-                'post'      => $addressRequest->input('post'),
-                'building'  => $addressRequest->input('building'),
-            ]);
-
-            return view('index',compact('products'));
-
-        }else {
-            $user = User::create([
-                'name'      => $addressRequest->input('name'),
-                'icon'      => $icon,
-                'address'   => $addressRequest->input('address'),
-                'password'  => Hash::make($addressRequest->input('password')),
-                'email'     => $addressRequest->input('email'),
-                'post'      => $addressRequest->input('post'),
-                'building'  => $addressRequest->input('building'),
-            ]);
-            event(new Registered($user));
-
-            return redirect()->route('login')->with('message', '登録が完了しました。メール認証を行ってください。');
-        }
+        return redirect('/');
     }
+
 }

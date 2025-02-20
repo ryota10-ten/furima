@@ -25,6 +25,7 @@ class ExhibitionRequest extends FormRequest
     {
         return [
             'name' => ['required'],
+            'brand' => ['required'],
             'detail' => ['required','max:255'],
             'img' => ['required','file','mimes:jpeg,png,jpg'],
             'price' => ['required','integer','min:0'],
@@ -38,6 +39,7 @@ class ExhibitionRequest extends FormRequest
     {
         return [
             'name.required' => '商品名を入力してください。',
+            'brand.required' => 'ブランド名を入力してください。',
             'detail.required' => '商品の説明を入力してください。',
             'detail.max' => '商品の説明は最大:max文字以下で入力してください。',
             'img.required' => '商品画像をアップロードしてください。',

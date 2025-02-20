@@ -15,7 +15,9 @@
     <header class="header">
         <div class="header__inner">
             <div class="header__logo">
-                <img class="header__logo--img" src="{{asset('img/logo.svg')}}" alt="CoachTech">
+                <a href="/">
+                    <img class="header__logo--img" src="{{asset('img/logo.svg')}}" alt="CoachTech">
+                </a>
             </div>
             <form class="header__search" method="get" action="/search">
             @csrf
@@ -53,8 +55,6 @@
                     {{ $message }}
                     @enderror
                 </div>
-                <input type="hidden" name="email" value="{{ $profile['email'] }}" >
-                <input type="hidden" name="password" value="{{ $profile['password'] }}" >
                 <label class="form__update--label">名前</label>
                 <input class="form__update--item" type="text" name="name" value="{{ $profile['name'] }}" >
                 <div class="form__error">

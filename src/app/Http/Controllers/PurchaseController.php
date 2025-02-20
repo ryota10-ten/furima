@@ -16,11 +16,6 @@ use Stripe\Checkout\Session;
 
 class PurchaseController extends Controller
 {
-    public function purchase()
-    {
-        return view('purchase');
-    }
-
     public function buy(Request $request,$id)
     {
         $user = Auth::user();
@@ -75,9 +70,9 @@ class PurchaseController extends Controller
     {
         $product = Product::findOrFail($id);
         \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
-        $paymentMethods = ['card'];  // デフォルトでカード支払い
+        $paymentMethods = ['card'];
         if ($request->method === 'コンビニ払い') {
-            $paymentMethods[] = 'konbini'; // コンビニ支払いが選択された場合、追加
+            $paymentMethods[] = 'konbini';
         }
         $session = \Stripe\Checkout\Session::create([
             'payment_method_types' => $paymentMethods,
