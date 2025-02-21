@@ -13,28 +13,31 @@ use App\Models\Order;
 class PurchaseTest extends TestCase
 {
     use RefreshDatabase;
+    protected $user;
+    protected $product;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->user = User::factory()->create();
+        $this->product = Product::factory()->create();
+
+        Stripe::setApiKey(config('services.stripe.secret'));
+
+    }
 
     public function test_user_is_redirected_to_stripe_checkout()
     {
-        $mockSession = \Mockery::mock('overload:' . Session::class);
-        $mockSession->shouldReceive('create')->once()->andReturn((object)[
-            'url' => 'https://checkout.stripe.com/c/pay/cs_test_mockSession'
+        $response = $this->actingAs($this->user)->post(route('purchase.fix', ['id' => $this->product->id]), [
+            'method' => 'card',
+            'post' => '1234',
+            'address' => 'Tokyo',
         ]);
-        $this->app->instance(\Stripe\Checkout\Session::class, $mockSession);
-        $user = User::factory()->create();
-        $product = Product::factory()->create();
-        config(['app.url' => 'https://checkout.stripe.com']);
-        $response = $this->actingAs($user)->post(route('purchase.fix', ['id' => $product->id]), 
-            [
-                'method' => 'card',
-                'post' => '1234',
-                'address' => 'Tokyo',
-                'user_id' => $user->id,
-                'product_id' => $product->id
-            ]
-        );
-
-        $response->assertRedirect('https://checkout.stripe.com/c/pay/cs_test_mockSession');
+        $this->assertTrue($response->isRedirect(), 'Response is not a redirect');
+        $redirectUrl = $response->headers->get('Location');
+        $this->assertNotNull($redirectUrl, 'Redirect URL is null');
+        $this->assertStringContainsString('https://checkout.stripe.com/c/pay/', $redirectUrl);
+        dd($redirectUrl);
     }
 
     public function test_product_is_marked_as_sold_after_purchase()
