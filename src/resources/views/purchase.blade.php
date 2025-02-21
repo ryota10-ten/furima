@@ -134,6 +134,17 @@
                     <button class="button__purchase" type="submit">
                         購入する
                     </button>
+                    <div class="form__error">
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+                    </div>
                 </form>
             </div>
         </div>
