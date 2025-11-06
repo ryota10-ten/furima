@@ -24,7 +24,7 @@
             会員登録
         </h1>
         <div class="content__form">
-            <form class="form__register" action="/mypage/profile" method="post">
+            <form class="form__register" action="/mypage/profile" method="post" novalidate>
                 @csrf
                 <label class="form__register--label">ユーザー名</label>
                 <input class="form__register--item" type="text" name="name" value="">

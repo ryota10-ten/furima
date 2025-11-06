@@ -92,8 +92,7 @@ STRIPE_SECRET=your_secret_key
 php artisan key:generate
 
 6. マイグレーションとシーディングの実装
-php artisan migrate
-php artisan db:seed
+php artisan migrate:fresh --seed
 
 5. サーバーを起動
 
