@@ -24,7 +24,7 @@
             ログイン
         </h1>
         <div class="content__form">
-            <form class="form__login" action="/login" method="post">
+            <form class="form__login" action="/login" method="post" novalidate>
                 @csrf
                 <label class="form__login--label">ユーザー名 / メールアドレス</label>
                 <input class="form__login--item" type="email" name="email" value="{{ old('email') }}" >

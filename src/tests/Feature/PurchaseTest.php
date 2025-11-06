@@ -37,7 +37,6 @@ class PurchaseTest extends TestCase
         $redirectUrl = $response->headers->get('Location');
         $this->assertNotNull($redirectUrl, 'Redirect URL is null');
         $this->assertStringContainsString('https://checkout.stripe.com/c/pay/', $redirectUrl);
-        dd($redirectUrl);
     }
 
     public function test_product_is_marked_as_sold_after_purchase()
