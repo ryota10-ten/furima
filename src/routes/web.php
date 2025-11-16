@@ -27,7 +27,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 Route::get('/email/verify', [VerificationController::class, 'show'])->name('verification.notice');
 Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])
-    ->middleware(['auth', 'signed'])
+    ->middleware(['signed'])
     ->name('verification.verify');
 Route::post('/email/verification-notification', [VerificationController::class, 'resend'])->name('verification.send');
 

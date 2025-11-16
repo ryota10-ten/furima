@@ -5,8 +5,8 @@
 
 ## 主な機能
 新規会員登録
-ログイン機能
-ログアウト機能
+ログイン
+ログアウト
 出品した商品以外の商品一覧取得
 いいねをした商品一覧取得
 商品検索
@@ -37,10 +37,10 @@ cd furimaTest
 docker compose up -d --build
 code .
 
-furimatestコンテナが作成されていれば成功です。
+*furimatestコンテナが作成されていれば成功です。
 
 3. Laravel のパッケージのインストール
-docker compose exec php bash
+docker-compose exec php bash
 composer install
 
 4. .env ファイルの作成
@@ -91,18 +91,18 @@ STRIPE_SECRET=your_secret_key
 以下のコマンドを実行して、アプリケーションの暗号化キーを生成してください。
 php artisan key:generate
 
-6. マイグレーションとシーディングの実装
+6. ストレージのシンボリックリンク作成
+php artisan storage:link
+
+7. マイグレーションとシーディングの実装
 php artisan migrate:fresh --seed
 
-5. サーバーを起動
+8. サーバーを起動
 
 php artisan serve
 ブラウザで
 http://localhost/
 にアクセスするとアプリを確認できます。
-
-
-<img width="876" alt="スクリーンショット 2025-02-20 11 04 37" src="https://github.com/user-attachments/assets/5fa53da1-0c3f-4b65-b644-bcfdea26d0bc" />
 
 
 

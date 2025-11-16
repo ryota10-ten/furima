@@ -23,7 +23,7 @@
 }
 
 .content__form {
-    margin: 0 auto;
+    margin:0 auto;
     width: 50%;
 }
 
@@ -31,5 +31,5 @@
     display: block;
     text-align: center;
     cursor: pointer;
-    margin: auto;
+    margin:5% auto;
 }
