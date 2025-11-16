@@ -16,7 +16,7 @@ class VerificationController extends Controller
      */
     public function show()
     {
-        return view('auth.verify-email'); // メール認証ページを表示
+        return view('auth.verify-email'); 
     }
 
     /**

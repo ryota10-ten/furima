@@ -22,6 +22,7 @@
             <form class="header__search" method="get" action="/search">
             @csrf
                 <input class="header__search--item" type="text" name="keyword" placeholder="なにをお探しですか？">
+                <input type="hidden" name="tab" id="search_tab" value="{{ $tab ?? 'tab1' }}">
             </form>
             <div class="header__buttons">
                 @if (Auth::check())
@@ -39,8 +40,9 @@
     </header>
     <main class="content">
         <div class="tab_wrap">
-            <input id="tab1" type="radio" name="tab_btn" checked>
-            <input id="tab2" type="radio" name="tab_btn">
+            <input id="tab1" type="radio" name="tab_btn" {{ ($tab ?? 'tab1') === 'tab1' ? 'checked' : '' }}>
+            <input id="tab2" type="radio" name="tab_btn" {{ ($tab ?? 'tab1') === 'tab2' ? 'checked' : '' }}>
+
             <div class="tab_area">
                 <label class="tab1_label" for="tab1">おすすめ</label>
                 <label class="tab2_label" for="tab2">マイリスト</label>
@@ -83,6 +85,14 @@
                 </div>
             </div>
         </div>
+        <script>
+            const tab1 = document.getElementById('tab1');
+            const tab2 = document.getElementById('tab2');
+            const searchTab = document.getElementById('search_tab');
+
+            tab1.addEventListener('change', () => { searchTab.value = 'tab1'; });
+            tab2.addEventListener('change', () => { searchTab.value = 'tab2'; });
+        </script>
     </main>
 </body>
 </html>

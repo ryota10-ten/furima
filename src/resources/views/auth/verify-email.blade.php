@@ -26,6 +26,11 @@
         <p class="content__span">
             メール認証を完了してください。
         </p>
+        <button type="submit" class="form__button">
+            <a class="form__link" href="https://mailtrap.io/inboxes/3400198/messages" target="_blank" rel="noopener noreferrer">
+                認証はこちらから
+            </a>
+        </button>
         @if (session('message'))
             <p style="color: green;">{{ session('message') }}</p>
         @endif
