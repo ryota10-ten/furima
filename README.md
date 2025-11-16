@@ -5,8 +5,8 @@
 
 ## 主な機能
 新規会員登録
-ログイン機能
-ログアウト機能
+ログイン
+ログアウト
 出品した商品以外の商品一覧取得
 いいねをした商品一覧取得
 商品検索
@@ -40,7 +40,7 @@ code .
 *furimatestコンテナが作成されていれば成功です。
 
 3. Laravel のパッケージのインストール
-docker compose exec php bash
+docker-compose exec php bash
 composer install
 
 4. .env ファイルの作成
@@ -103,8 +103,6 @@ php artisan serve
 ブラウザで
 http://localhost/
 にアクセスするとアプリを確認できます。
-
-
 
 
 
