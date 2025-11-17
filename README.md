@@ -35,16 +35,19 @@ cd furimaTest
 
 2. Docker の設定
 docker compose up -d --build
+
 code .
 
 *furimatestコンテナが作成されていれば成功です。
 
 3. Laravel のパッケージのインストール
 docker-compose exec php bash
+
 composer install
 
 4. .env ファイルの作成
 cp .env.example .env
+
 .env.example をコピーして .env を作成。
 
 ※メール送信の設定（Mailtrap）
@@ -56,15 +59,23 @@ Mailtrap にログイン後、Inbox を作成
 Start Testing を開く
 
 Laravel 7+ and 8.Xの設定を選択
+
 .env に以下の情報を設定
 
 MAIL_MAILER=smtp
+
 MAIL_HOST=smtp.mailtrap.io
+
 MAIL_PORT=2525
+
 MAIL_USERNAME=your_mailtrap_username
+
 MAIL_PASSWORD=your_mailtrap_password
+
 MAIL_ENCRYPTION=null
+
 MAIL_FROM_ADDRESS=no-reply@example.com
+
 MAIL_FROM_NAME="Furima App"
 
 MAIL_USERNAME と MAIL_PASSWORD には Mailtrap のダッシュボードで確認できる値を入力してください。
@@ -110,3 +121,4 @@ http://localhost/
 
 
 
+# furimaPro
